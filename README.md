@@ -73,4 +73,4 @@ If you customize the configuration a lot, you can consider moving them to indivi
 npm start
 ```
 
-To run a local development server that serves the basic demo located in `demo/index.html`
+This runs a local development server that serves the basic demo page located at `demo/index.html`

@@ -1,9 +1,17 @@
 {
   "name": "citadel-cli",
-  "description": "Webcomponent citadel-cli following open-wc recommendations",
+  "description": "A hierarchical command line (CLI) for your webapps",
+  "keywords": [ "command", "cli", "interface", "console" ],
+  "author": {
+    "name": "James Childers",
+    "email": "james.childers@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jchilders/citadel-cli.git"
+  },
   "license": "MIT",
-  "author": "citadel-cli",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
@@ -11,6 +19,11 @@
     ".": "./dist/src/index.js",
     "./citadel-cli.js": "./dist/src/citadel-cli.js"
   },
+  "files": [
+    "dist",
+    "custom-elements.json"
+  ],
+  "types": "dist/src/index.d.ts",
   "scripts": {
     "analyze": "cem analyze --litelement",
     "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"web-dev-server\"",
