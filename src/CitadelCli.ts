@@ -1,14 +1,29 @@
-import { html, css, LitElement } from 'lit';
+import { html, css, LitElement, unsafeCSS } from 'lit';
+import { globalStyles } from './styles/global-styles.js';
 import { property } from 'lit/decorators.js';
 
 export class CitadelCli extends LitElement {
-  static styles = css`
+  static styles = [
+    globalStyles,
+    css`
     :host {
+      /* Apply global styles directly to host */
+      ${globalStyles}
+
       display: block;
-      padding: 25px;
-      color: var(--citadel-cli-text-color, #000);
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40vh;
+      background-color: var(--citadel-bg, rgb(17, 24, 39));
+      color: var(--citadel-cli-text-color, #0f0);
+      color: #0f0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-  `;
+  `];
 
   @property({ type: String }) header = 'Hey there';
 
