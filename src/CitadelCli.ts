@@ -1,11 +1,12 @@
-import { html, css, LitElement } from 'lit';
-import { globalStyles } from './styles/global-styles.js';
+import { html, LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
+import { globalStyles } from './styles/global-styles.js';
 
 export class CitadelCli extends LitElement {
   static styles = globalStyles;
 
-  @state() private isVisible = true;
+  @state() private isVisible = false;
+
   @property({ type: String }) header = 'Hey there';
 
   @property({ type: Number }) counter = 5;
@@ -34,7 +35,8 @@ export class CitadelCli extends LitElement {
       if (document.startViewTransition) {
         await document.startViewTransition(() => {
           this.isVisible = !this.isVisible;
-          this.classList.toggle('hidden', !this.isVisible);
+          this.classList.toggle('slide-up', this.isVisible);
+          this.classList.toggle('slide-down', !this.isVisible);
         }).finished;
       } else {
         this.isVisible = !this.isVisible;
@@ -45,7 +47,7 @@ export class CitadelCli extends LitElement {
 
   render() {
     return html`
-      <div class="${this.isVisible ? 'visible' : 'hidden'}">
+      <div>
         <h2>${this.header} Nr. ${this.counter}!</h2>
         <button @click=${this.__increment}>increment</button>
       </div>

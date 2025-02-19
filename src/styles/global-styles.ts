@@ -5,13 +5,13 @@ export const globalStyles = css`
     --citadel-bg: rgb(17, 24, 39);
     --citadel-text: rgba(255, 255, 255, 0.87);
 
-    --citadel-border: rgb(55, 65, 81);
     --citadel-accent: #646cff;
     --citadel-accent-hover: #535bf2;
+    --citadel-border: rgb(55, 65, 81);
+    --citadel-error: rgb(239, 68, 68);
     --citadel-min-height: 200px;
     --citadel-max-height: 80vh;
     --citadel-default-height: 35vh;
-    --citadel-error: rgb(239, 68, 68);
 
     view-transition-name: citadel;
     background-color: var(--citadel-bg, rgb(17, 24, 39));
@@ -25,27 +25,32 @@ export const globalStyles = css`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    transform: translateY(100%);
   }
 
-  :host(.hidden) {
-    display: none;
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
   }
 
-  @keyframes slide-in {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
+  @keyframes slideDown {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(100%);
+    }
   }
 
-  @keyframes slide-out {
-    from { transform: translateY(0); }
-    to { transform: translateY(100%); }
+  :host(.slide-up) {
+    animation: slideUp 200ms ease-out forwards;
   }
 
-  ::view-transition-old(citadel) {
-    animation: 250ms cubic-bezier(0.4, 0, 1, 1) both slide-out;
-  }
-
-  ::view-transition-new(citadel) {
-    animation: 250ms cubic-bezier(0, 0, 0.2, 1) both slide-in;
+  :host(.slide-down) {
+    animation: slideDown 200ms ease-out forwards;
   }
 `;

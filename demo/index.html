@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <style>
     body {
-      background: #fafafa;
+      background: #aab;
     }
   </style>
 </head>
 <body>
-  <div id="demo"></div>
+  <div id="demo">
+    HEYYEYEYEYE
+  </div>
 
   <script type="module">
     import { html, render } from 'lit';
@@ -19,7 +21,7 @@
     const header = 'Hello owc World! I\'m in demo/index.html';
     render(
       html`
-        <citadel-cli .header=${header}>
+        <citadel-cli .header=${header} .counter=${3}>
           some light-dom
         </citadel-cli>
       `,
