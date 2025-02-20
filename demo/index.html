@@ -11,14 +11,14 @@
 </head>
 <body>
   <div id="demo">
-    HEYYEYEYEYE
+    Press Escape to activate Citadel
   </div>
 
   <script type="module">
     import { html, render } from 'lit';
     import '../dist/src/citadel-cli.js';
 
-    const header = 'Hello owc World! I\'m in demo/index.html';
+    const header = 'Hello from Citadel CLI! I\'m in demo/index.html';
     render(
       html`
         <citadel-cli .header=${header} .counter=${3}>

@@ -25,12 +25,12 @@ export const globalStyles = css`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    transform: translateY(100%);
+    transform: translateY(110vh);
   }
 
   @keyframes slideUp {
     from {
-      transform: translateY(100%);
+      transform: translateY(110vh);
     }
     to {
       transform: translateY(0);
@@ -42,15 +42,15 @@ export const globalStyles = css`
       transform: translateY(0);
     }
     to {
-      transform: translateY(100%);
+      transform: translateY(110vh);
     }
   }
 
   :host(.slide-up) {
-    animation: slideUp 200ms ease-out forwards;
+    animation: slideUp 550ms ease-in forwards;
   }
 
   :host(.slide-down) {
-    animation: slideDown 200ms ease-out forwards;
+    animation: slideDown 550ms ease-in forwards;
   }
 `;
