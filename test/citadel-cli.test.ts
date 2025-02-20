@@ -19,7 +19,9 @@ describe('CitadelCli', () => {
   });
 
   it('can override the header via attribute', async () => {
-    const el = await fixture<CitadelCli>(html`<citadel-cli header="attribute header"></citadel-cli>`);
+    const el = await fixture<CitadelCli>(
+      html`<citadel-cli header="attribute header"></citadel-cli>`,
+    );
 
     expect(el.header).to.equal('attribute header');
   });

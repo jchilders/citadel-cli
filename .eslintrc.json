@@ -1,0 +1,36 @@
+{
+  "extends": ["@open-wc"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "parser": "@babel/eslint-parser"
+    }
+  ],
+  "rules": {
+    "no-useless-constructor": "off",
+    "no-empty-function": ["error", { "allow": ["constructors"] }],
+    "import/no-unresolved": "off",
+    "import/extensions": ["error", "always", { "ignorePackages": true }],
+    "@typescript-eslint/no-unused-vars": ["error", {
+      "argsIgnorePattern": "^_",
+      "varsIgnorePattern": "^_",
+      "ignoreRestSiblings": true
+    }],
+    "no-unused-vars": "off",
+    "max-classes-per-file": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error", { "allow": ["LogLevel", "CommandStatus"] }],
+    "operator-linebreak": ["error", "after"],
+    "implicit-arrow-linebreak": "off"
+  }
+}
