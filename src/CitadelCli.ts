@@ -1,6 +1,23 @@
 import { html, LitElement } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import { provide } from '@lit/context';
 import { globalStyles } from './styles/global-styles.js';
+import { LogLevel } from './utils/logger.js';
+import { createContext } from '@lit/context';
+
+export interface CitadelConfig {
+  activationKey: string;
+  deactivationKey: string;
+  logLevel: LogLevel;
+}
+
+export const defaultConfig: CitadelConfig = {
+  activationKey: '.',
+  deactivationKey: 'Escape',
+  logLevel: LogLevel.WARN,
+};
+
+export const citadelConfigContext = createContext<CitadelConfig>('citadel-config');
 
 @customElement('citadel-cli')
 export class CitadelCli extends LitElement {
@@ -11,6 +28,10 @@ export class CitadelCli extends LitElement {
   @property({ type: String }) header = 'Hey there';
 
   @property({ type: Number }) counter = 5;
+
+  @provide({ context: citadelConfigContext })
+  @property({ attribute: false })
+  config: CitadelConfig = defaultConfig;
 
   __increment() {
     this.counter += 1;
@@ -34,14 +55,24 @@ export class CitadelCli extends LitElement {
   /* eslint-enable wc/guard-super-call */
 
   private async handleKeydown(event: KeyboardEvent) {
-    if (event.key === 'Escape') {
+    if (!this.isVisible && event.key === this.config.activationKey) {
       if (document.startViewTransition) {
         await document.startViewTransition(() => {
-          this.isVisible = !this.isVisible;
+          this.isVisible = true;
           this.toggleVisibilityClasses();
         }).finished;
       } else {
-        this.isVisible = !this.isVisible;
+        this.isVisible = true;
+        this.toggleVisibilityClasses();
+      }
+    } else if (this.isVisible && event.key === this.config.deactivationKey) {
+      if (document.startViewTransition) {
+        await document.startViewTransition(() => {
+          this.isVisible = false;
+          this.toggleVisibilityClasses();
+        }).finished;
+      } else {
+        this.isVisible = false;
         this.toggleVisibilityClasses();
       }
     }
