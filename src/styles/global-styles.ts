@@ -2,16 +2,17 @@ import { css } from 'lit';
 
 export const globalStyles = css`
   :host {
-    --citadel-bg: rgb(17, 24, 39);
-    --citadel-text: rgba(255, 255, 255, 0.87);
+    all: initial;
 
     --citadel-accent: #646cff;
     --citadel-accent-hover: #535bf2;
+    --citadel-bg: rgb(17, 24, 39);
     --citadel-border: rgb(55, 65, 81);
     --citadel-error: rgb(239, 68, 68);
     --citadel-min-height: 200px;
     --citadel-max-height: 80vh;
     --citadel-default-height: 35vh;
+    --citadel-text: rgba(255, 255, 255, 0.87);
 
     view-transition-name: citadel;
     background-color: var(--citadel-bg, rgb(17, 24, 39));

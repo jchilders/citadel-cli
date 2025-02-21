@@ -30,7 +30,7 @@ export class CommandRegistry {
     }
 
     const newCommandNode = new CommandNode(segments, description, handler);
-    const existingCommand = this.commands.find(command => {
+    const existingCommand = this.commands.find((command) => {
       const cmdPattern = command
         .getSegments()
         .map(segment => (segment.type === 'argument' ? '*' : segment.name))
@@ -59,7 +59,7 @@ export class CommandRegistry {
    * @returns The command node or undefined if not found.
    */
   getCommand(path: string[]): CommandNode | undefined {
-    return this.commands.find(command => {
+    return this.commands.find((command) => {
       const fullPath = command.getFullPath();
       const searchPath = path.join(' ');
       return fullPath.join(' ') === searchPath;
@@ -78,8 +78,7 @@ export class CommandRegistry {
       cmd
         .getSegments()
         .map(segment => (segment.type === 'argument' ? '*' : segment.name))
-        .join(' '),
-    );
+        .join(' '));
 
     // Convert the new path to a pattern
     const newPathPattern = path
@@ -129,7 +128,7 @@ export class CommandRegistry {
 
     // Find all commands that match the current path prefix
     const matchingSegments = this.commands
-      .filter(command => {
+      .filter((command) => {
         const segments = command.getSegments();
 
         // Skip if command isn't long enough to have completions at this depth
@@ -156,7 +155,7 @@ export class CommandRegistry {
         return true;
       })
       .filter(command => command.getSegments().length > pathDepth)
-      .map(command => {
+      .map((command) => {
         const segment = command.getSegments()[pathDepth];
         const SegmentClass =
           segment.type === 'argument' ? ArgumentSegment : WordSegment;

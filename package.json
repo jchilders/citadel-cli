@@ -1,7 +1,12 @@
 {
   "name": "citadel-cli",
   "description": "A hierarchical command line (CLI) for your webapps",
-  "keywords": [ "command", "cli", "interface", "console" ],
+  "keywords": [
+    "command",
+    "cli",
+    "interface",
+    "console"
+  ],
   "author": {
     "name": "James Childers",
     "email": "james.childers@gmail.com"
@@ -17,12 +22,8 @@
   "module": "dist/src/index.js",
   "exports": {
     ".": "./dist/src/index.js",
-    "./citadel-cli.js": "./dist/src/citadel-cli.js"
+    "./CitadelCli.js": "./dist/src/CitadelCli.js"
   },
-  "files": [
-    "dist",
-    "custom-elements.json"
-  ],
   "types": "dist/src/index.d.ts",
   "scripts": {
     "analyze": "cem analyze --litelement",
@@ -31,7 +32,6 @@
     "prepublish": "tsc && npm run analyze -- --exclude dist",
     "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
     "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore",
-    "prepare": "husky",
     "test": "tsc && wtr --coverage",
     "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch\"",
     "storybook": "tsc && npm run analyze -- --exclude dist && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"storybook dev -p 8080\"",
@@ -52,13 +52,14 @@
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
     "@web/dev-server": "^0.4.6",
+    "@web/dev-server-esbuild": "^1.0.4",
     "@web/storybook-builder": "^0.1.16",
     "@web/storybook-framework-web-components": "^0.1.2",
     "@web/test-runner": "^0.18.2",
     "concurrently": "^8.2.2",
+    "esbuild": "^0.25.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
-    "husky": "^9.0.11",
     "lint-staged": "^15.2.7",
     "prettier": "^3.3.2",
     "storybook": "^7.6.20",
@@ -74,30 +75,16 @@
     ],
     "plugins": [
       "@typescript-eslint"
-    ],
-    "rules": {
-      "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": [
-        "error"
-      ],
-      "import/no-unresolved": "off",
-      "import/extensions": [
-        "error",
-        "always",
-        {
-          "ignorePackages": true
-        }
-      ]
-    }
+    ]
   },
   "prettier": {
     "singleQuote": true,
     "arrowParens": "avoid"
   },
   "lint-staged": {
-    "*.ts": [
-      "eslint --fix",
-      "prettier --write"
+    "*.{ts,html}": [
+      "eslint --fix --ignore-path .gitignore",
+      "prettier --write --ignore-path .gitignore"
     ]
   }
 }

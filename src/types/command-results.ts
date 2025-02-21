@@ -1,11 +1,13 @@
 import { html, TemplateResult } from 'lit';
 
+/* eslint-disable no-shadow */
 export enum CommandStatus {
   Pending = 'pending',
   Success = 'success',
   Failure = 'failure',
   Timeout = 'timeout',
 }
+/* eslint-enable no-shadow */
 
 export abstract class CommandResult {
   private _status: CommandStatus = CommandStatus.Pending;

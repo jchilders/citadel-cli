@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
-export const enum LogLevel {
+/* eslint-disable no-shadow */
+export enum LogLevel {
   NONE = 0,
   ERROR = 1,
   WARN = 2,
@@ -7,6 +8,7 @@ export const enum LogLevel {
   DEBUG = 4,
   TRACE = 5,
 }
+/* eslint-enable no-shadow */
 
 export class Logger {
   private static level: LogLevel = LogLevel.NONE;
