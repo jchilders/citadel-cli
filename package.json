@@ -50,6 +50,7 @@
     "@storybook/addon-links": "^7.6.20",
     "@storybook/web-components": "^7.6.20",
     "@types/mocha": "^10.0.7",
+    "@types/sinon": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
     "@web/dev-server": "^0.4.6",
@@ -63,6 +64,7 @@
     "eslint-config-prettier": "^9.1.0",
     "lint-staged": "^15.2.7",
     "prettier": "^3.3.2",
+    "sinon": "^17.0.1",
     "storybook": "^7.6.20",
     "tslib": "^2.6.3",
     "typescript": "^5.5.3"

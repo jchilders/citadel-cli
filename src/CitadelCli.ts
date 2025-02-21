@@ -1,9 +1,9 @@
 import { html, LitElement } from 'lit';
+import { createContext, provide } from '@lit/context';
 import { customElement, property, state } from 'lit/decorators.js';
-import { provide } from '@lit/context';
 import { globalStyles } from './styles/global-styles.js';
 import { LogLevel } from './utils/logger.js';
-import { createContext } from '@lit/context';
+import { handleKeydown } from './handlers/keydown.js';
 
 export interface CitadelConfig {
   activationKey: string;
@@ -31,7 +31,7 @@ export class CitadelCli extends LitElement {
 
   @provide({ context: citadelConfigContext })
   @property({ attribute: false })
-  config: CitadelConfig = defaultConfig;
+    config: CitadelConfig = defaultConfig;
 
   __increment() {
     this.counter += 1;
@@ -54,28 +54,16 @@ export class CitadelCli extends LitElement {
   }
   /* eslint-enable wc/guard-super-call */
 
+  private setVisible(visible: boolean) {
+    this.isVisible = visible;
+  }
+
   private async handleKeydown(event: KeyboardEvent) {
-    if (!this.isVisible && event.key === this.config.activationKey) {
-      if (document.startViewTransition) {
-        await document.startViewTransition(() => {
-          this.isVisible = true;
-          this.toggleVisibilityClasses();
-        }).finished;
-      } else {
-        this.isVisible = true;
-        this.toggleVisibilityClasses();
-      }
-    } else if (this.isVisible && event.key === this.config.deactivationKey) {
-      if (document.startViewTransition) {
-        await document.startViewTransition(() => {
-          this.isVisible = false;
-          this.toggleVisibilityClasses();
-        }).finished;
-      } else {
-        this.isVisible = false;
-        this.toggleVisibilityClasses();
-      }
-    }
+    await handleKeydown(event, this.config, {
+      isVisible: this.isVisible,
+      setVisible: this.setVisible.bind(this),
+      toggleVisibilityClasses: this.toggleVisibilityClasses.bind(this)
+    });
   }
 
   private toggleVisibilityClasses() {
