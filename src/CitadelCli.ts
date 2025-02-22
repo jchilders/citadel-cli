@@ -62,11 +62,11 @@ export class CitadelCli extends LitElement {
     await handleKeydown(event, this.config, {
       isVisible: this.isVisible,
       setVisible: this.setVisible.bind(this),
-      toggleVisibilityClasses: this.toggleVisibilityClasses.bind(this),
+      toggleVisibilityHandler: this.toggleVisibility.bind(this),
     });
   }
 
-  private toggleVisibilityClasses() {
+  private toggleVisibility() {
     // Use requestAnimationFrame to batch class changes
     requestAnimationFrame(() => {
       const root = this.shadowRoot?.host;

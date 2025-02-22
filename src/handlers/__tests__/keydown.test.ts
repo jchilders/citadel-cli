@@ -9,7 +9,7 @@ import type { CitadelConfig } from '../../CitadelCli.js';
 const createMockViewState = (isVisible = false): TestViewState => ({
   isVisible,
   setVisible: sinon.stub(),
-  toggleVisibilityClasses: sinon.stub(),
+  toggleVisibilityHandler: sinon.stub(),
 });
 
 const defaultConfig: CitadelConfig = {
@@ -26,7 +26,7 @@ describe('handleKeydown', () => {
     await handleKeydown(event, defaultConfig, viewState);
 
     expect(viewState.setVisible.calledOnceWith(true)).to.be.true;
-    expect(viewState.toggleVisibilityClasses.calledOnce).to.be.true;
+    expect(viewState.toggleVisibilityHandler.calledOnce).to.be.true;
   });
 
   it('hides citadel when deactivation key is pressed and visible', async () => {
@@ -36,7 +36,7 @@ describe('handleKeydown', () => {
     await handleKeydown(event, defaultConfig, viewState);
 
     expect(viewState.setVisible.calledOnceWith(false)).to.be.true;
-    expect(viewState.toggleVisibilityClasses.calledOnce).to.be.true;
+    expect(viewState.toggleVisibilityHandler.calledOnce).to.be.true;
   });
 
   it('does nothing when activation key is pressed but already visible', async () => {
@@ -46,7 +46,7 @@ describe('handleKeydown', () => {
     await handleKeydown(event, defaultConfig, viewState);
 
     expect(viewState.setVisible.notCalled).to.be.true;
-    expect(viewState.toggleVisibilityClasses.notCalled).to.be.true;
+    expect(viewState.toggleVisibilityHandler.notCalled).to.be.true;
   });
 
   it('uses view transitions when available', async () => {
@@ -62,6 +62,6 @@ describe('handleKeydown', () => {
 
     expect(startViewTransition.calledOnce).to.be.true;
     expect(viewState.setVisible.calledOnceWith(true)).to.be.true;
-    expect(viewState.toggleVisibilityClasses.calledOnce).to.be.true;
+    expect(viewState.toggleVisibilityHandler.calledOnce).to.be.true;
   });
 });

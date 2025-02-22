@@ -14,36 +14,41 @@ export const globalStyles = css`
     --citadel-default-height: 35vh;
     --citadel-text: rgba(255, 255, 255, 0.87);
 
-    view-transition-name: citadel;
     background-color: var(--citadel-bg, rgb(17, 24, 39));
+    bottom: 0;
+    box-sizing: border-box;
     color: var(--citadel-text, rgb(0, 99, 30));
     display: block;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
     height: 40vh;
-    box-sizing: border-box;
+    left: 0;
     margin: 0;
+    opacity: 0;
     padding: 0;
+    position: fixed;
     transform: translateY(110vh);
+    view-transition-name: citadel;
+    width: 100%;
   }
 
   @keyframes slideUp {
     from {
       transform: translateY(110vh);
+      opacity: 0;
     }
     to {
       transform: translateY(0);
+      opacity: 1;
     }
   }
 
   @keyframes slideDown {
     from {
       transform: translateY(0);
+      opacity: 1;
     }
     to {
       transform: translateY(110vh);
+      opacity: 0;
     }
   }
 

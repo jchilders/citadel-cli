@@ -4,13 +4,13 @@ import type { CitadelConfig } from '../CitadelCli.js';
 export interface ViewState {
   isVisible: boolean;
   setVisible: (visible: boolean) => void;
-  toggleVisibilityClasses: () => void;
+  toggleVisibilityHandler: () => void;
 }
 
 export interface TestViewState {
   isVisible: boolean;
   setVisible: sinon.SinonStub;
-  toggleVisibilityClasses: sinon.SinonStub;
+  toggleVisibilityHandler: sinon.SinonStub;
 }
 
 export interface ViewTransitionAPI {
@@ -23,7 +23,7 @@ export async function handleKeydown(
   viewState: ViewState,
   viewTransitionAPI: ViewTransitionAPI = document,
 ) {
-  const { isVisible, setVisible, toggleVisibilityClasses } = viewState;
+  const { isVisible, setVisible, toggleVisibilityHandler: toggleVisibilityClasses } = viewState;
 
   if (!isVisible && event.key === config.activationKey) {
     if (viewTransitionAPI.startViewTransition) {
