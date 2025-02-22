@@ -1,5 +1,5 @@
-import type { CitadelConfig } from '../CitadelCli.js';
 import type sinon from 'sinon';
+import type { CitadelConfig } from '../CitadelCli.js';
 
 export interface ViewState {
   isVisible: boolean;
@@ -21,7 +21,7 @@ export async function handleKeydown(
   event: KeyboardEvent,
   config: CitadelConfig,
   viewState: ViewState,
-  viewTransitionAPI: ViewTransitionAPI = document
+  viewTransitionAPI: ViewTransitionAPI = document,
 ) {
   const { isVisible, setVisible, toggleVisibilityClasses } = viewState;
 

@@ -14,6 +14,13 @@
     {
       "files": ["*.html"],
       "parser": "@babel/eslint-parser"
+    },
+    {
+      "files": ["*.test.js", "*.test.ts"],
+      "rules": {
+        "no-unused-expressions": "off",
+        "import/no-extraneous-dependencies": "off"
+      }
     }
   ],
   "rules": {
@@ -27,6 +34,7 @@
     "import/extensions": ["error", "always", { "ignorePackages": true }],
     "max-classes-per-file": "off",
     "no-empty-function": ["error", { "allow": ["constructors"] }],
+    "no-shadow": "off",
     "no-useless-constructor": "off",
     "operator-linebreak": ["error", "after"]
   }

@@ -1,16 +1,16 @@
 import { expect } from '@open-wc/testing';
 import * as sinon from 'sinon';
-import { handleKeydown, type ViewState, type ViewTransitionAPI, type TestViewState } from '../keydown.js';
+import {
+  handleKeydown, type ViewTransitionAPI, type TestViewState,
+} from '../keydown.js';
 import { LogLevel } from '../../utils/logger.js';
 import type { CitadelConfig } from '../../CitadelCli.js';
 
-const createMockViewState = (isVisible = false): TestViewState => {
-  return {
-    isVisible,
-    setVisible: sinon.stub(),
-    toggleVisibilityClasses: sinon.stub(),
-  };
-};
+const createMockViewState = (isVisible = false): TestViewState => ({
+  isVisible,
+  setVisible: sinon.stub(),
+  toggleVisibilityClasses: sinon.stub(),
+});
 
 const defaultConfig: CitadelConfig = {
   activationKey: '.',
